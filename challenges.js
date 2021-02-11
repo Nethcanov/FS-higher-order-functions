@@ -1,3 +1,5 @@
+//stuck on 7.3, 7.4, 8, 10, 11.1, 11.2, 11.3
+
 /*------------------
 DONE
 1) 
@@ -12,9 +14,10 @@ element in the array.
 
 Test cases:
 forEach(["a", "b", "c"], e => {console.log(e)}); // a b c
-          arr                   cb
+          arr             cb
 ------------------*/
 ////let forEach = (arr, cb) => {
+  ////loop through arr and apply callback to each
 // function forEach(arr, cb) {
 //   for (let i in arr){
 //     cb(arr[i])
@@ -73,7 +76,8 @@ Test cases:
 console.log(filter([5, 6, 7, 8], e => e % 2 === 0 ? true : false)); // [6, 8]
 ------------------*/
 
-// //not += as that leads to 68 - why?
+////  .push not += as that leads to 68 - why?
+
 // function filter(arr, cb) {
 //   let filtered = [];
 //   for(let i in arr){
@@ -106,6 +110,8 @@ console.log(every([2, 4, 6], n => n < 6)); // false
 console.log(every([2, 4, 6, 2], n => n < 6)); // false
 ------------------*/
 ////need to do false first as one true will be sufficient to fulfill the criteria
+////loop through the array, apply cb to each element - if every element is less than 6, 
+////  return true 
 // function every(array, cb) {
 //   for(let i in array){
 //    if(cb(array[i]) !== true ){
@@ -118,7 +124,7 @@ console.log(every([2, 4, 6, 2], n => n < 6)); // false
 // console.log(every([2, 4, 6, 2], n => n < 6)); // false
 /*------------------
 5)
-NOT DONE
+DONE
 You've written "forEach", "map", "filter"
 and "every" from scratch. Each of 
 these methods exist on the JavaScript Array
@@ -129,14 +135,12 @@ forEach method to add all of the items
 in the nums array. Use a fat arrow function.
 The code has been started for you.
 ------------------*/
-// //need this explaining!
+// //no const as forEach does not make anything - const will throw an error, it just loops
 // const nums = [1, 2, 3, 4, 5, 6, 7, 8];
+
 // let sum = 0;
 
-// nums.forEach((e) => {
-
-// sum += e
-// });
+// nums.forEach(e => { sum += e });
 
 // console.log(sum);//36
 
@@ -183,18 +187,18 @@ Test case:
 Result should be ["Grace Hopper", "Ruth Bader Ginsburg", "Ada Lovelace"]
 ------------------*/
 //// x is the elements in the array - need to access the values of the k/v pairs
-const people = [
-  { firstname: "Grace", lastname: "Hopper" },
-  { firstname: "Ruth", lastname: "Bader Ginsburg" },
-  { firstname: "Ada", lastname: "Lovelace" },
-];
+// const people = [
+//   { firstname: "Grace", lastname: "Hopper" },
+//   { firstname: "Ruth", lastname: "Bader Ginsburg" },
+//   { firstname: "Ada", lastname: "Lovelace" },
+// ];
 
 // const fullnames = people.map((x) => `${x.firstname} ${x.lastname}, ` )
 
 // console.log(fullnames);
 
 /*------------------
-NOT DONE
+DONE
 6.4)
 Use the map method to create a duplicate of objects that contain the original data plus the fullname.
 Use the same people array as in the previous exercise
@@ -202,16 +206,16 @@ Use the same people array as in the previous exercise
 Test case:
 Result should be [
   { firstname: "Grace", lastname: "Hopper", fullname: "Grace Hopper" },
-  {
-    firstname: "Ruth",
-    lastname: "Bader Ginsburg",
-    fullname: "Ruth Bader Ginsburg",
-  },
+  { firstname: "Ruth", lastname: "Bader Ginsburg", fullname: "Ruth Bader Ginsburg"},
   { firstname: "Ada", lastname: "Lovelace", fullname: "Ada Lovelace" },
 ]
 ------------------*/
-
-// const fullobjects = // your code here
+// const people = [
+//   { firstname: "Grace", lastname: "Hopper" },
+//   { firstname: "Ruth", lastname: "Bader Ginsburg" },
+//   { firstname: "Ada", lastname: "Lovelace" },
+// ];
+// const fullobjects = people.map((p) => `firstname: ${p.firstname}, lastname: ${p.lastname}, fullname: ${p.firstname}  ${p.lastname}`)
 
 // console.log(fullobjects);
 
@@ -244,13 +248,13 @@ Test case:
 ------------------*/
 
 // const moreNumbers = [1, 3, 2, 2, 4, 13, 8, 6, 8, 10, 4, 12, 12];
-
-// const areInPosition =  moreNumbers.map((x) => (x  === moreNumbers[x]));
+// element in each array is the same as the index no of each element
+// const areInPosition =  moreNumbers.map(x => x === moreNumbers[x]);
 
 // console.log(areInPosition);
 
 /*------------------
-NOT DONE
+DONE
 7.1)
 Use the filter method to filter out any
 number that is greater than 50.
@@ -261,12 +265,12 @@ Test case:
 
 // const numsList = [1, 34, 83, 65, 3, 24, 98];
 
-// const smallNums = // your code here
+// const smallNums = numsList.filter(x => x < 50);
 
 // console.log(smallNums);
 
 /*------------------
-NOT DONE
+DONE
 7.2)
 Use the filter method to filter out any
 number that is even. Use the same array as before, numList
@@ -275,28 +279,33 @@ Test case:
 [1, 34, 83, 65, 3, 24, 98] to [1, 83, 65, 3]
 ------------------*/
 
-// const evenList = // your code here
+// const numsList = [1, 34, 83, 65, 3, 24, 98];
+
+// const evenList = numsList.filter(x => x %2 !== 0);
 
 // console.log(evenList);
 
 /*------------------
-NOT DONE
+NOT DONE - stuck
 7.3)
+
+// const areInPosition =  moreNumbers.map((x) => (x  === moreNumbers[x]));
 Use the filter method to keep all the numbers that are bigger
 than the position they occupy in the array, starting at 0
-
+return the ones with elements > the index
 Test case:
+[1,          5, 6,       9]
 [1, 0, 1, 3, 5, 6, 6, 1, 9] to [1, 5, 6, 9]
 ------------------*/
 
 // const moreNums = [1, 0, 1, 3, 5, 6, 6, 1, 9];
 
-// const evenList = // your code here
+// const evenList = moreNums.filter(a => a > moreNums[a]);
 
 // console.log(evenList);
 
 /*------------------
-NOT DONE
+DONE - Yussssss!!!!!!
 7.4)
 Use the filter method to filter out the people whose firstname
 does not contain the letter "a". Use the array "people" that you used before.
@@ -314,12 +323,24 @@ Test case:
 ]
 ------------------*/
 
-// const peopleWithA = // your code here
+////use string method includes("a")? return firstname and lastname
+////use filter
 
+// const people = [
+//   { firstname: "Grace", lastname: "Hopper" },
+//   { firstname: "Ruth", lastname: "Bader Ginsburg" },
+//   { firstname: "Ada", lastname: "Lovelace" },
+// ];
+
+// const peopleWithA = people.filter(person => {
+//   if(person.firstname.includes("a")){
+//     return person;
+//   } 
+// })
 // console.log(peopleWithA);
 
 /*------------------
-NOT DONE
+DONE - YUSSSS!
 8)
 Use the every method to return true
 if every word in the array below is a
@@ -342,29 +363,23 @@ Test case:
 // const wordList1 = ["deified", "civic", "radar", "level", "rotor"];
 // const wordList2 = ["kayak", "reviver", "racecar", "reader", "madam"];
 
-// function checkPalindromes(list) {
-//   return list.every(() => {
-//     // add necessary parameters in above
-//     // and finish the code in the body here
-//   });
-// }
+// const checkPalindromes = (list) =>  list.every(x =>  x === x.split('').reverse().join(''));
 
 // console.log(checkPalindromes(wordList1));
 // console.log(checkPalindromes(wordList2));
 
 /*------------------
-NOT DONE
+DONE
 9)
 Look at the MDN docs and Eloquent JavaScript
 to understand how "reduce" works. Then, 
 use reduce to add all the items in the 
 numsList (from the previous question) together.
 ------------------*/
-
-// const total = numsList.reduce(() => {
-//   // add necessary parameters in above
-//   // and finish the code in the body here
-// });
+// const numsList = [1, 34, 83, 65, 3, 24, 98];
+// const total = numsList.reduce((total, a) => 
+//   total + a
+// );
 
 // console.log(total); // should equal 308
 
@@ -395,7 +410,8 @@ Hint: you can use HOFs inside the callbacks of other HOFs.
 
 Test case:
 [[20,31,19,18,22],[20,31,16,21,21],[17,31,16,21,21],[18,19,19,20,32]] 
-to [[20, 31, 16, 21, 21], [17, 31, 16, 21, 21]]
+to [[20, 31, 16, 21, 21], 
+ and [17, 31, 16, 21, 21]]
 ------------------*/
 
 // let olderTeams = // your code here
@@ -698,6 +714,7 @@ Test case:
 // console.log(evenList);
 
 /*------------------
+
 7.4)
 Use the filter method to filter out the people whose firstname
 does not contain the letter "a". Use the array "people" that you used before.
