@@ -17,7 +17,7 @@ forEach(["a", "b", "c"], e => {console.log(e)}); // a b c
           arr             cb
 ------------------*/
 ////let forEach = (arr, cb) => {
-  ////loop through arr and apply callback to each
+////loop through arr and apply callback to each
 // function forEach(arr, cb) {
 //   for (let i in arr){
 //     cb(arr[i])
@@ -76,7 +76,7 @@ Test cases:
 console.log(filter([5, 6, 7, 8], e => e % 2 === 0 ? true : false)); // [6, 8]
 ------------------*/
 
-////  .push not += as that leads to 68 - why?
+////  .push not += as that leads to 68 - why? - pushes a string not elements
 
 // function filter(arr, cb) {
 //   let filtered = [];
@@ -232,7 +232,7 @@ Test case:
 
 // const numbers = [3, 7, 24, 1, 66, 89, 88, 23, 54, 54, 12, 9];
 
-// const areEven = numbers.map((x) => (x % 2 === 0 ));
+// const areEven = numbers.map(x => (x % 2 === 0 ));
 
 // console.log(areEven);
 
@@ -248,8 +248,8 @@ Test case:
 ------------------*/
 
 // const moreNumbers = [1, 3, 2, 2, 4, 13, 8, 6, 8, 10, 4, 12, 12];
-// element in each array is the same as the index no of each element
-// const areInPosition =  moreNumbers.map(x => x === moreNumbers[x]);
+// // element in each array is the same as the index no of each element
+// const areInPosition =  moreNumbers.map((num, ix) => num === ix);
 
 // console.log(areInPosition);
 
@@ -265,7 +265,7 @@ Test case:
 
 // const numsList = [1, 34, 83, 65, 3, 24, 98];
 
-// const smallNums = numsList.filter(x => x < 50);
+// const smallNums = numsList.filter(x => x <= 50);
 
 // console.log(smallNums);
 
@@ -286,10 +286,10 @@ Test case:
 // console.log(evenList);
 
 /*------------------
-NOT DONE - stuck
+DONE - Paulina's answer
 7.3)
 
-// const areInPosition =  moreNumbers.map((x) => (x  === moreNumbers[x]));
+pass in 2 things the element and ix for the index
 Use the filter method to keep all the numbers that are bigger
 than the position they occupy in the array, starting at 0
 return the ones with elements > the index
@@ -300,12 +300,12 @@ Test case:
 
 // const moreNums = [1, 0, 1, 3, 5, 6, 6, 1, 9];
 
-// const evenList = moreNums.filter(a => a > moreNums[a]);
+// const evenList = moreNums.filter((num, ix) => num > ix);
 
 // console.log(evenList);
 
 /*------------------
-DONE - Yussssss!!!!!!
+DONE 
 7.4)
 Use the filter method to filter out the people whose firstname
 does not contain the letter "a". Use the array "people" that you used before.
@@ -332,15 +332,12 @@ Test case:
 //   { firstname: "Ada", lastname: "Lovelace" },
 // ];
 
-// const peopleWithA = people.filter(person => {
-//   if(person.firstname.includes("a")){
-//     return person;
-//   } 
-// })
+////from Mirka
+// const peopleWithA = people.filter(f => f.firstname.includes("a"))
 // console.log(peopleWithA);
 
 /*------------------
-DONE - YUSSSS!
+DONE
 8)
 Use the every method to return true
 if every word in the array below is a
@@ -363,7 +360,7 @@ Test case:
 // const wordList1 = ["deified", "civic", "radar", "level", "rotor"];
 // const wordList2 = ["kayak", "reviver", "racecar", "reader", "madam"];
 
-// const checkPalindromes = (list) =>  list.every(x =>  x === x.split('').reverse().join(''));
+// const checkPalindromes = list =>  list.every(x => x === x.split('').reverse().join(''));
 
 // console.log(checkPalindromes(wordList1));
 // console.log(checkPalindromes(wordList2));
@@ -392,17 +389,22 @@ Use the filter method to create an array containing
 only those numbers that are even and are located in an even position in the array,
 or those numbers that are odd and are located in an odd poistion in the array,
 starting at position 0
-
+so if index of number %2 ===1 return the number
 Test case:
 [1, 34, 83, 65, 3, 24, 98] to [65,98]
 ------------------*/
+//need (1) value as well as (2) position so pass in 2 parameters
+//no curly brackets as it will return the value - with curly brackets, it will return an empty array
 
-// const oddList = // your code here
-
+// let numsList = [1, 34, 83, 65, 3, 24, 98];
+// const oddList = numsList.filter((num, ix) => 
+//   ((num %2 === 0) && (ix %2 === 0)) || ((num %2 !== 0) && (ix %2 !== 0))
+// );
 // console.log(oddList);
 
 /*------------------
-NOT DONE
+DONE - Jim did this
+//with curly brackets - need to include return unless the one line of code returns what you want
 11.1)
 Each array in this array represents the each player's age in a basketball team
 Filter out those teams that have less than 3 players that are older than 20 years old.
@@ -410,12 +412,18 @@ Hint: you can use HOFs inside the callbacks of other HOFs.
 
 Test case:
 [[20,31,19,18,22],[20,31,16,21,21],[17,31,16,21,21],[18,19,19,20,32]] 
-to [[20, 31, 16, 21, 21], 
- and [17, 31, 16, 21, 21]]
+to [[20, 31, 16, 21, 21], and [17, 31, 16, 21, 21]]
+//do inner part first
+//filter out by age and then return correct length arrays
 ------------------*/
+// let teams = [[20,31,19,18,22],[20,31,16,21,21],[17,31,16,21,21],[18,19,19,20,32]];
 
-// let olderTeams = // your code here
-
+// let olderTeams = teams.filter(team => {
+//   //for each team find out how many are older than 20 
+//   let olderPlayers = team.filter(age => age > 20);
+//   //return the teams with more than 3 in
+//   return olderPlayers.length >= 3;
+// })
 // console.log(olderTeams);
 
 /*------------------
@@ -797,9 +805,8 @@ Test case:
 [1, 34, 83, 65, 3, 24, 98] to [65,98]
 ------------------*/
 
-// const oddList = // your code here
+// const oddList  
 
-// console.log(oddList);
 
 /*------------------
 11.1)
